@@ -1,0 +1,36 @@
+
+<h3>My Portfolio: <%= @stocks.count %> stocks
+  <small style="padding: 0px 0px 0px 145px">
+    <a class="btn btn" href="/stocks/new">Add a Stock to My Portfolio</a>
+  </small>
+</h3>
+
+<table class='table table-striped' style="width:45%" border="1"> 
+  <thead>
+    <tr>
+      <th width="40%">Company</th>
+      <th>Ticker</th>
+      <th>Current Price</th>
+      <th>Price Change</th>
+      <th width="15%">Percentage Change</th>
+	  <th></th>
+	  <th></th>
+
+    </tr>
+  <tbody>
+    <% @stocks.each do |stock| %>
+      <tr>
+        <td>
+          <%= link_to stock.company_name, "/stocks/#{stock.id}" %>
+        </td>
+        <td><%= stock.ticker %></td>
+		<td><%= stock.quote %></td>
+		<td><%= stock.price_change %></td>
+		<td><%= stock.percentage_change %>%</td>
+        <td><%= link_to "Delete", "/stocks/#{stock.id}", :method => "delete" %></td>
+        <td><%= link_to "Edit", "/stocks/#{stock.id}/edit" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

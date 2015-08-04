@@ -1,0 +1,31 @@
+<h1>Edit Stock</h1>
+
+<%= form_tag "/stocks/#{@stock.id}", :method => "patch" do %>
+  <div>
+    <label>Company Name:</label>
+    <input type="text" name="company_name" value="<%= @stock.company_name %>" required>
+  </div>
+
+  <div>
+    <label style="padding: 0px 64px 0px 0px">Ticker:</label>
+    <input type="text" name="ticker" value="<%= @stock.ticker %>" required>
+  </div>
+
+  <div>
+    <label style="padding: 0px 16px 0px 0px">Current Price:</label>
+    <input type="text" name="quote" value="<%= @stock.quote %>" required>
+  </div>
+  
+  <div>
+    <label style="padding: 0px 32px 0px 0px">Price Change:</label>
+    $<input type="text" name="price_change" value="<%= @stock.price_change %>" required>
+  </div>
+  
+  <div>
+    <label style="padding: 0px 0px 0px 0px">Percentage Change:</label>
+    <input type="text" name="percentage_change" value="<%= @stock.percentage_change %>" required>%
+  </div>
+
+  <input type="submit" value="Update Stock">
+
+<% end %>
