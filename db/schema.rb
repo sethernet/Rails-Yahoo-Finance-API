@@ -11,14 +11,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150826010154) do
+
+  create_table "feeds", force: :cascade do |t|
+    t.string   "title"
+    t.text     "summary"
+    t.string   "url"
+    t.datetime "published_at"
+    t.string   "guid"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.integer "portfolio_id"
+    t.integer "stock_id"
+  end
+
+  add_index "items", ["portfolio_id"], name: "index_items_on_portfolio_id"
+  add_index "items", ["stock_id"], name: "index_items_on_stock_id"
+
+  create_table "portfolios", force: :cascade do |t|
+    t.string  "title"
+    t.integer "user_id"
+  end
+
+  add_index "portfolios", ["user_id"], name: "index_portfolios_on_user_id"
 
   create_table "stocks", force: :cascade do |t|
-    t.string  "company_name"
-    t.string  "ticker"
-    t.integer "quote"
-    t.integer "price_change"
-    t.integer "percentage_change"
+    t.string "company_name"
+    t.string "ticker"
+    t.float  "quote"
+    t.float  "price_change"
+    t.float  "percentage_change"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "admin",                  default: false
+    t.string   "password_digest"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
 end

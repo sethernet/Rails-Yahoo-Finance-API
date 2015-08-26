@@ -1,0 +1,27 @@
+<% if session[:user_id] %>
+	
+	<h2 class="text-center" style="padding: 200px 0px 0px 0px">You are already Signed In!</h2>
+
+<% else %>
+    
+		<h1>Sign In</h1>
+
+		<%= form_tag "/sessions" do %>
+
+		  <p>
+			<%= label_tag :email %>
+			<%= text_field_tag :email %>
+		  </p>
+
+		  <p>
+			<%= label_tag :password %>
+			<%= password_field_tag :password %>
+		  </p>
+
+		  <%= submit_tag "Sign In!" %>
+
+		<% end %>
+		
+	<p><%= link_to "forgotten password?", "/password_resets/new" %></p>	
+
+<% end %>

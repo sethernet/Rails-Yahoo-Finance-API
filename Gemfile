@@ -47,3 +47,11 @@ gem 'ez'
 gem "twitter-bootstrap-rails"
 
 gem 'yahoo-finance', require: 'yahoo_finance'
+
+gem "stock_quote"
+
+gem 'bcrypt-ruby', :require => 'bcrypt'
+
+gem 'rails_12factor', group: :production
+
+ruby "2.1.5"

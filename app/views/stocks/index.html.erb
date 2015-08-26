@@ -1,36 +1,79 @@
+<% if session[:user_id] %>
+    
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6">
+			<div style="padding: 0px 0px 0px 115px">
+				<h3 style="padding: 0px 0px 0px 55px">Portfolio: <%= @portfolio.title %> <small> (<%= @portfolio.stocks.count %> stocks)</small></h3> 
+				  <ul>
+					<a class="btn btn" href="/stocks/new">Add a Stock</a>
+					<a class="btn btn" href="/portfolios/new">Create New Portfolio</a>
+					
+					 <%= form_tag("/stocks", method: "get") do %>
+					 
+						 <span style="font-size:14px">Select Portfolio:
+							  <select name="portfolio_id" style="font-size:14px">
+							  <% @portfolios.each do |p| %>
+								<option value="<%= p.id %>"> <%= p.title %></option>
+							  <% end %>
+							  </select>
+						 </span>
+						<input type="submit" value="Submit" class="btn btn-default" >
+					 <% end %>
+					 
+				  </ul>
+			</div>
 
-<h3>My Portfolio: <%= @stocks.count %> stocks
-  <small style="padding: 0px 0px 0px 145px">
-    <a class="btn btn" href="/stocks/new">Add a Stock to My Portfolio</a>
-  </small>
-</h3>
-
-<table class='table table-striped' style="width:45%" border="1"> 
+<table class='table table-striped' border="1" style="border-collapse:collapse"> 
+   	
   <thead>
     <tr>
-      <th width="40%">Company</th>
+      <th>Company</th>
       <th>Ticker</th>
       <th>Current Price</th>
       <th>Price Change</th>
-      <th width="15%">Percentage Change</th>
+      <th>Percentage Change</th>
 	  <th></th>
 	  <th></th>
 
     </tr>
   <tbody>
-    <% @stocks.each do |stock| %>
+  
+    <% @portfolio.stocks.each do |stock| %>  
       <tr>
         <td>
           <%= link_to stock.company_name, "/stocks/#{stock.id}" %>
         </td>
         <td><%= stock.ticker %></td>
-		<td><%= stock.quote %></td>
-		<td><%= stock.price_change %></td>
+		<td>$<%= stock.quote %></td>
+		<td>$<%= stock.price_change %></td>
 		<td><%= stock.percentage_change %>%</td>
         <td><%= link_to "Delete", "/stocks/#{stock.id}", :method => "delete" %></td>
         <td><%= link_to "Edit", "/stocks/#{stock.id}/edit" %></td>
       </tr>
+    
     <% end %>
   </tbody>
 </table>
 
+        </div>
+        <div class="col-lg-6" style="margin: 0px 0px 0px 0px">
+			<h3>News Feed</h3>
+            
+  <div>
+  
+    <% @feeds.each do |feed| %>
+		<div style=" border-style: solid; border-width: 0px 0px 1px 1px; border-radius: 5px">
+		    <h5 style="padding: 2px 5px 0px 5px"><%= link_to feed.title, feed.url %></h5>
+			<div style="padding: 0px 5px 0px 5px"><%= feed.summary %></div>
+			<small style="padding: 0px 5px 0px 5px"><%= feed.published_at %></small>
+		</div>
+       
+    <% end %>
+        </div>
+    </div>
+</div>
+
+  <% else %>
+    <h2 class="text-center" style="padding: 200px 0px 0px 0px">Create a New Account or Sign In to Manage Your Portfolios!</h2>
+  <% end %>

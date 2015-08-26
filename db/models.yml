@@ -1,9 +1,31 @@
+User
+   name: string
+   email: string
+   password_digest: string
+   admin: boolean(false)
+
 Stock
    company_name: string
    ticker: string
-   quote: integer
-   price_change: integer 
-   percentage_change: integer
+   quote: float
+   price_change: float 
+   percentage_change: float
+   
+Portfolio
+   title: string
+   user_id: integer
+
+Item
+   portfolio_id: integer
+   stock_id: integer   
+
+Feed
+   title: string 
+   summary: text 
+   url: string 
+   published_at: datetime 
+   guid: string   
+   
 #
 # Indent consistently!  Follow the above syntax exactly.
 # Typical column choices are: string, text, integer, boolean, date, time, and datetime.

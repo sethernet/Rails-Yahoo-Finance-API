@@ -17,29 +17,39 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">Stock Box</a>
+        <a class="navbar-brand" href="/stocks">Stock Box</a>
       </div>
-
+		 
       <!-- Nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-
+		<ul class="nav navbar-nav">
           <form action="/quotes" class="navbar-form navbar-left" role="search">
+		    <% if session[:user_id] %>
+            <li style="margin:6px 0px 0px 70px">Welcome, <%= User.find(session[:user_id]).name %>!</li>
+            <% end %>
             <div style="padding: 0px 0px 0px 310px" class="form-group">
-              <input value="<%= params[:keyword] %>" name="keyword" type="text" class="form-control" placeholder="Company or Ticker">
+              <input value="<%= params[:get_quote] %>" name="get_quote" type="text" class="form-control" placeholder="Company or Ticker">
             </div>
             <button type="submit" class="btn btn-default">Get Quote</button>
           </form>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Sign Up</a></li>
-          <li><a href="#">Login</a></li>
+          <li><a href="/users/new">Sign Up</a></li>
+          <li><a href="/sessions/new">Sign In</a></li>
+          <li><a href="/account">My Account</a></li>
+          <li><a href="/logout">Sign Out</a></li>
         </ul>
       </div>
     </div>
  </nav>
 
+    <% if flash[:notice].present? %>
+      <div class="alert alert-info">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+ 
 <%= yield %>
 
 </body>

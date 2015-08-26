@@ -1,0 +1,11 @@
+<h1>Add a New Portfolio</h1>
+
+<%= form_tag "/portfolios" do %>
+  <div>
+    <label>Portfolio Name:</label>
+    <input type="text" name="title" required>
+  </div>
+
+  <input type="submit" value="Add Portfolio">
+
+<% end %>

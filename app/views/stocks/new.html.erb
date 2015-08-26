@@ -32,7 +32,16 @@
     <label style="padding: 0px 16px 0px 0px">Today's Percentage Change:</label>
     <input type="text" name="percentage_change" value="<%= @stock.percentage_change %>" required>%
   </div>
-
+  
+   <div><b>Add to Portfolio: </b>
+     <select name="portfolio_id">
+      <% Portfolio.all.each do |p| %>
+        <option value="<%= p.id %>"><%= p.title %></option>
+      <% end %>
+      </select>
+   </div>
+  
+  
   <input type="submit" value="Add Stock">
 
 <% end %>
