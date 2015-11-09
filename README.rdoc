@@ -1,5 +1,12 @@
 == README
 
-Show action will pull company info and description from wikipedia
+A Rails app to manage multiple stock portfolios. 
 
-Get Quote button will pull current stock info using the Yahoo Finance gem
+The app implements the Yahoo Finance API to look up real-time stock data. 
+After signing up, users can create as many portfolios as they want and add 
+as many stocks to these portfolios as desired. 
+
+An additional feature is that when viewing a portfolio, a Yahoo Finance news
+API pulls in the 10 most recently published news stories related to the companies
+in the portfolio being viewed. 
+
